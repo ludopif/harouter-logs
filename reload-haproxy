@@ -1,6 +1,6 @@
 #!/bin/bash -xu
 
-##### test2 #####
+##### test3 #####
 
 config_file=/var/lib/haproxy/conf/haproxy.config
 pid_file=/var/lib/haproxy/run/haproxy.pid
