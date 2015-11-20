@@ -1,0 +1,46 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "harouter-stick",
+                "annotations": {
+                    "description": "Keeps track of changes in the application image"
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "harouter-stick",
+                "annotations": {
+                    "description": "trying to build my own router based on standard one"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/akokshar/harouter-stick.git"
+                    }
+                },
+
+                "strategy": {
+                    "type": "Docker"
+                },
+        
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "harouter-stick:latest"
+                    }
+                }
+            }
+        }
+    ]
+}
