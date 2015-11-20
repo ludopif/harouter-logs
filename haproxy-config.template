@@ -277,26 +277,3 @@ backend be_secure_{{$cfgIdx}}
 {{     end }}
 {{   end }}
 {{ end }}{{/* end reencrypt passthrough map template */}}
-
-{{/* *** sticky tables among the routers according to instructions at *** */}}
-{{/* *** https://docs.openshift.com/enterprise/3.0/install_config/install/deploy_router.html#using-stick-tables  *** */}}
-
-{{ if (len .PeerEndpoints) gt 0 }}
-peers openshift_peers
-  {{ range $endpointID, $endpoint := .PeerEndpoints }}
-     peer {{$endpoint.TargetName}} {{$endpoint.IP}}:1937
-  {{ end }}
-{{ end }}
-
-{{ if eq $cfg.TLSTermination "passthrough" }}
-backend be_tcp_{{$cfgIdx}}
-  balance leastconn
-  timeout check 5000ms
-  stick-table type ip size 1m expire 5m{{ if (len $.PeerEndpoints) gt 0 }} peers openshift_peers {{ end }}
-  stick on src
-  {{ range $endpointID, $endpoint := $serviceUnit.EndpointTable }}
-     server {{$endpointID}} {{$endpoint.IP}}:{{$endpoint.Port}} check inter 5000ms
-  {{ end }}
-{{ end }}
-
-
