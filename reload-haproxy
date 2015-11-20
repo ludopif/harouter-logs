@@ -1,7 +1,5 @@
 #!/bin/bash -xu
 
-### test 1 ###
-
 config_file=/var/lib/haproxy/conf/haproxy.config
 pid_file=/var/lib/haproxy/run/haproxy.pid
 old_pid=""
