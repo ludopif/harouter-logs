@@ -36,7 +36,7 @@ frontend public
   bind :80
   mode http
   option httplog
-  log global
+  log 127.0.0.1 local0
   tcp-request inspect-delay 5s
   tcp-request content accept if HTTP
 
