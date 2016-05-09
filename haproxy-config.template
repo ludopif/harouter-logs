@@ -35,6 +35,8 @@ listen stats :{{.StatsPort}}
 frontend public
   bind :80
   mode http
+  option httplog
+  log global
   tcp-request inspect-delay 5s
   tcp-request content accept if HTTP
 
