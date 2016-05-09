@@ -37,7 +37,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "harouter-log:latest"
+                        "name": "harouter-log:1.0"
                     }
                 }
             }
